@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import by.onliner.app.pages.CompareItemsPage;
+
 public class Element
 {
 	public static WebDriver driver;
@@ -34,6 +36,10 @@ public class Element
 	{
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(locator))));
 		return this;
+	}
+	
+	public void waitAndClick () {
+		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(locator)))).click();
 	}
 	
 	

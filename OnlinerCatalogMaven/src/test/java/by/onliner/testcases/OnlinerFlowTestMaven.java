@@ -2,6 +2,7 @@ package by.onliner.testcases;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -13,11 +14,12 @@ import by.onliner.test.data.TestData;
 
 public class OnlinerFlowTestMaven {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 	public WebDriverWait wait;
 
 	@BeforeTest
 	public void beforeTest() {
+		//driver = new FirefoxDriver();
 		driver = new ChromeDriver();
 		wait = new WebDriverWait(driver, 15);
 		Element.driver = driver;

@@ -47,6 +47,7 @@ public class QuadrokoptersPage {
 	public QuadrokoptersPage specifyRangeOfAction(String range) {
 		log.info("[Step] specify range of action");
 		wait.until(ExpectedConditions.elementToBeClickable(ui.rangeOfAction)).sendKeys(range);
+		//ui.rangeOfAction2.setValue(range);
 		return this;
 	}
 
@@ -104,6 +105,7 @@ public class QuadrokoptersPage {
 
 	public CompareItemsPage clickOnNumberOfItemsToCompare() {
 		log.info("[Step] click on number of items to compare link");
+		//ui.numberOfItemsToCompare2.waitAndClick();
 		wait.until(ExpectedConditions.elementToBeClickable(ui.numberOfItemsToCompare)).click();
 		return new CompareItemsPage(driver, wait);
 	}
