@@ -5,10 +5,12 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import by.onliner.app.ui.QuadrokoptersPageUi;
+import by.onliner.taf.utils.AdditionalConditions;
 
 public class QuadrokoptersPage {
 
@@ -18,6 +20,7 @@ public class QuadrokoptersPage {
 	private WebDriverWait wait;
 
 	QuadrokoptersPageUi ui = new QuadrokoptersPageUi();
+	AdditionalConditions loadJs = new AdditionalConditions();
 
 	public QuadrokoptersPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
@@ -34,7 +37,11 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage setParameter(String parameterName) {
 		log.info(String.format("[Step] set parameter: %s", parameterName));
+		//int i;
+		//for (i = 0; i < 10; i++) {}
+		
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		loadJs.jQueryAJAXCallsHaveCompleted();
 		driver.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName)));
 		jse.executeScript("window.scrollBy(0," + driver
 				.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName))).getLocation().y
@@ -47,7 +54,7 @@ public class QuadrokoptersPage {
 	public QuadrokoptersPage specifyRangeOfAction(String range) {
 		log.info("[Step] specify range of action");
 		wait.until(ExpectedConditions.elementToBeClickable(ui.rangeOfAction)).sendKeys(range);
-		//ui.rangeOfAction2.setValue(range);
+		// ui.rangeOfAction2.setValue(range);
 		return this;
 	}
 
@@ -67,12 +74,14 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage changeSortOrderCheapGoFirst() {
 		log.info("[Step] change sort order - cheap should go first");
+		loadJs.jQueryAJAXCallsHaveCompleted();
 		wait.until(ExpectedConditions.presenceOfElementLocated(ui.sortOrderIcon)).click();
 		wait.until(ExpectedConditions.elementToBeClickable(ui.sortOrderDropDowOptionCheap)).click();
 		return this;
 	}
 
 	public QuadrokoptersPage verifyIsPriceSortedDesc() {
+		loadJs.jQueryAJAXCallsHaveCompleted();
 		log.info("[Step] verify the price is sorted from high to low");
 		wait.until(ExpectedConditions.elementToBeClickable(ui.firstPrice));
 
@@ -87,6 +96,7 @@ public class QuadrokoptersPage {
 	}
 
 	public QuadrokoptersPage selectItemsToCompare(int[] itemIndexes) {
+		loadJs.jQueryAJAXCallsHaveCompleted();
 		for (int i = 0; i < itemIndexes.length; i++) {
 			log.info(String.format("[Step] select items to compare. Index number: %s", itemIndexes[i]));
 			wait.until(ExpectedConditions
@@ -105,8 +115,10 @@ public class QuadrokoptersPage {
 
 	public CompareItemsPage clickOnNumberOfItemsToCompare() {
 		log.info("[Step] click on number of items to compare link");
-		//ui.numberOfItemsToCompare2.waitAndClick();
+		// ui.numberOfItemsToCompare2.waitAndClick();
 		wait.until(ExpectedConditions.elementToBeClickable(ui.numberOfItemsToCompare)).click();
 		return new CompareItemsPage(driver, wait);
 	}
+
+
 }
