@@ -19,7 +19,6 @@ public class OnlinerFlowTestMaven {
 
 	@BeforeTest
 	public void beforeTest() {
-		//driver = new FirefoxDriver();
 		driver = new ChromeDriver();
 		wait = new WebDriverWait(driver, 15);
 		Element.driver = driver;
@@ -29,7 +28,7 @@ public class OnlinerFlowTestMaven {
 	}
 
 	@Test
-	public void e2eOnlinerCatalogTest() {
+	public void e2eOnlinerCatalogTest() throws InterruptedException {
 		// 2. Navigate to catalog
 		OnlinerHomePage onlinerLandingPage = new OnlinerHomePage(driver, wait);
 		onlinerLandingPage.selectMainMenuItem("Каталог").selectCatalogTopMenuItem("Красота").selectLeftMenuItem("Хобби")

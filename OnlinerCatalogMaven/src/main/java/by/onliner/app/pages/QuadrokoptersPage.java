@@ -35,14 +35,11 @@ public class QuadrokoptersPage {
 		return this;
 	}
 
-	public QuadrokoptersPage setParameter(String parameterName) {
+	public QuadrokoptersPage setParameter(String parameterName) throws InterruptedException {
 		log.info(String.format("[Step] set parameter: %s", parameterName));
-		//int i;
-		//for (i = 0; i < 10; i++) {}
-		
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		loadJs.jQueryAJAXCallsHaveCompleted();
 		driver.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName)));
+		Thread.sleep(2000);
 		jse.executeScript("window.scrollBy(0," + driver
 				.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName))).getLocation().y
 				+ ")");
@@ -51,8 +48,9 @@ public class QuadrokoptersPage {
 		return this;
 	}
 
-	public QuadrokoptersPage specifyRangeOfAction(String range) {
+	public QuadrokoptersPage specifyRangeOfAction(String range) throws InterruptedException {
 		log.info("[Step] specify range of action");
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(ui.rangeOfAction)).sendKeys(range);
 		// ui.rangeOfAction2.setValue(range);
 		return this;
@@ -95,8 +93,8 @@ public class QuadrokoptersPage {
 		return this;
 	}
 
-	public QuadrokoptersPage selectItemsToCompare(int[] itemIndexes) {
-		loadJs.jQueryAJAXCallsHaveCompleted();
+	public QuadrokoptersPage selectItemsToCompare(int[] itemIndexes) throws InterruptedException {
+		Thread.sleep(2000);
 		for (int i = 0; i < itemIndexes.length; i++) {
 			log.info(String.format("[Step] select items to compare. Index number: %s", itemIndexes[i]));
 			wait.until(ExpectedConditions
