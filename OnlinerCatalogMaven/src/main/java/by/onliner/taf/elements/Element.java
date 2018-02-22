@@ -42,5 +42,12 @@ public class Element
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(locator)))).click();
 	}
 	
+	public String getText() {
+		return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(locator)))).getText();
+		
+		//String text = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(locator)))).getText();
+		//return text;
+	}
+	
 	
 }

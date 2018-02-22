@@ -15,7 +15,7 @@ import by.onliner.test.data.TestData;
 public class OnlinerFlowTestMaven {
 
 	public static WebDriver driver;
-	public WebDriverWait wait;
+	public static WebDriverWait wait;
 
 	@BeforeTest
 	public void beforeTest() {

@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,9 +28,10 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage verifyIsPageHeaderEqualTo(String headerText) {
 		log.info("[Step] verify page header");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ui.radiocontrolAirModelHeader));
-		String actualHeader = driver.findElement(ui.radiocontrolAirModelHeader).getText();
-		Assert.assertEquals(actualHeader, headerText);
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(ui.radiocontrolAirModelHeader));
+		//String actualHeader = driver.findElement(ui.radiocontrolAirModelHeader).getText();
+		//Assert.assertEquals(actualHeader, headerText);
+		Assert.assertEquals(ui.radiocontrolAirModelHeader.getText(), headerText);
 		return this;
 	}
 
@@ -50,9 +50,9 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage specifyRangeOfAction(String range) throws InterruptedException {
 		log.info("[Step] specify range of action");
-		Thread.sleep(2000);
-		wait.until(ExpectedConditions.elementToBeClickable(ui.rangeOfAction)).sendKeys(range);
-		// ui.rangeOfAction2.setValue(range);
+		Thread.sleep(500);
+		//wait.until(ExpectedConditions.elementToBeClickable(ui.rangeOfAction)).sendKeys(range);
+		ui.rangeOfAction.waitToBeClickableAndSetValue(range);
 		return this;
 	}
 
@@ -72,14 +72,12 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage changeSortOrderCheapGoFirst() {
 		log.info("[Step] change sort order - cheap should go first");
-		loadJs.jQueryAJAXCallsHaveCompleted();
 		wait.until(ExpectedConditions.presenceOfElementLocated(ui.sortOrderIcon)).click();
 		wait.until(ExpectedConditions.elementToBeClickable(ui.sortOrderDropDowOptionCheap)).click();
 		return this;
 	}
 
 	public QuadrokoptersPage verifyIsPriceSortedDesc() {
-		loadJs.jQueryAJAXCallsHaveCompleted();
 		log.info("[Step] verify the price is sorted from high to low");
 		wait.until(ExpectedConditions.elementToBeClickable(ui.firstPrice));
 
