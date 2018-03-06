@@ -31,11 +31,11 @@ public class OnlinerFlowTestMaven {
 	public void e2eOnlinerCatalogTest() throws InterruptedException {
 		// 2. Navigate to catalog
 		OnlinerHomePage onlinerLandingPage = new OnlinerHomePage(driver, wait);
-		onlinerLandingPage.selectMainMenuItem("Каталог").selectCatalogTopMenuItem("Красота").selectLeftMenuItem("Хобби")
-				.selectCategoryFromGrid("Радиоуправляемые авиамодели")
-				.verifyIsPageHeaderEqualTo("Радиоуправляемые авиамодели").setParameter("квадрокоптер")
-				.setParameter("пластик").setParameter("металл").specifyRangeOfAction("100").clickAdditionalParameters()
-				.setParameter("бесколлекторный").verifyNumberOfFoundItemsIsCorrect("Найдено 28 товаров")
+		onlinerLandingPage.selectMainMenuItem(TestData.catalog).selectCatalogTopMenuItem(TestData.beauty).selectLeftMenuItem(TestData.hobby)
+				.selectCategoryFromGrid(TestData.radioModels)
+				.verifyIsPageHeaderEqualTo(TestData.radioModels).setParameter(TestData.quadrocopter)
+				.setParameter(TestData.plastic).setParameter(TestData.metal).specifyRangeOfAction(TestData.rangeOfAction100).clickAdditionalParameters()
+				.setParameter(TestData.beskollectornyi).verifyNumberOfFoundItemsIsCorrect(String.format(TestData.numberOfFoundItems, 28))
 				.changeSortOrderCheapGoFirst().verifyIsPriceSortedDesc()
 				.selectItemsToCompare(TestData.indexesOfCheckboxes).checkNumberOfItemsToCompare("4 товара в сравнении")
 				.clickOnNumberOfItemsToCompare().clickSelectedItemInComparisonTable("3")
