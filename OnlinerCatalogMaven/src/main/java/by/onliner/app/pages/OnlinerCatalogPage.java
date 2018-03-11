@@ -15,11 +15,6 @@ public class OnlinerCatalogPage
 	private WebDriver driver;
 	private WebDriverWait wait;
 	
-	public static final By beautyAndSportLink = By.xpath("//*[@id='container']//span[contains(text(), 'Красота')]");
-	public static final By hobbyMenuItemLink = By.xpath("//*[@id='container']//div[contains(text(), 'Хобби')]");
-	public static final By radioControlAirModelsLink = By.xpath("//div[@id='container']//span[contains(text(), 'Радиоуправляемые авиамодели')]");
-	
-	
 	private final OnlinerCatalogPageUi ui = new OnlinerCatalogPageUi();
 	
 	public OnlinerCatalogPage(WebDriver driver, WebDriverWait wait)

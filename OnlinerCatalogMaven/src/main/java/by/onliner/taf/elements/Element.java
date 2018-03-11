@@ -7,11 +7,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import by.onliner.app.pages.CompareItemsPage;
+import by.onliner.taf.BaseTest;
 
-public class Element
+public class Element extends BaseTest
 {
-	public static WebDriver driver;
-	public static WebDriverWait wait;
+	//public static WebDriver driver = BaseTest.driver;
+	//public static WebDriverWait wait = BaseTest.wait;
 	protected String locator;
 	
 	public Element(String locator)
@@ -19,35 +20,46 @@ public class Element
 		this.setLocator(locator);
 	}
 
-
-	public String getLocator() {
+	public String getLocator()
+	{
 		return locator;
 	}
 
-	public void setLocator(String locator) {
+	public void setLocator(String locator)
+	{
 		this.locator = locator;
 	}
 	
-	public void click () {
-		driver.findElement(By.xpath(locator)).click();
+	
+	public String getText() 
+	{
+		return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(locator)))).getText();
+		
 	}
 	
-	public Element waitToBeClickable()
+	public Element clear () 
+	{
+		driver.findElement(By.xpath(locator)).clear();
+		return this;
+	}
+	
+	public Element waitToBeClickable ()
 	{
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(locator))));
 		return this;
 	}
 	
-	public void waitAndClick () {
-		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(locator)))).click();
+	public void click ()
+	{
+		driver.findElement(By.xpath(locator)).click();
 	}
 	
-	public String getText() {
-		return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(locator)))).getText();
-		
-		//String text = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(locator)))).getText();
-		//return text;
+	public Element waitPresenсeOfElement()
+	{
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
+		return this;
 	}
-	
+
+
 	
 }

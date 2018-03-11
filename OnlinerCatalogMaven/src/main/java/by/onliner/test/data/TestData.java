@@ -5,7 +5,7 @@ public class TestData {
 	public static final int indexesOfCheckboxes[] = {1,4,6,7};
 	public static final String[] initiallySelectedParameters = {"квадрокоптер", "пластик", "металл", "бесколлекторный"};
 	public static final String catalog = "Каталог";
-	public static final String beauty = "Красота";
+	public static final String beautyAndSport = "Красота";
 	public static final String hobby = "Хобби";
 	public static final String radioModels = "Радиоуправляемые авиамодели";
 	public static final String quadrocopter = "квадрокоптер";
@@ -14,6 +14,7 @@ public class TestData {
 	public static final String rangeOfAction100 = "100";
 	public static final String beskollectornyi = "бесколлекторный";
 	public static final String numberOfFoundItems = "Найдено %s товаров";
+	public static final String onlinerHomePage = "http://onliner.by";
 	
 		
 	

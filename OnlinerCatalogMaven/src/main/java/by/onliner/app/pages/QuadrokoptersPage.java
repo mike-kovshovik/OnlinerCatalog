@@ -19,7 +19,7 @@ public class QuadrokoptersPage {
 	private WebDriverWait wait;
 
 	QuadrokoptersPageUi ui = new QuadrokoptersPageUi();
-	AdditionalConditions loadJs = new AdditionalConditions();
+	//AdditionalConditions loadJs = new AdditionalConditions();
 
 	public QuadrokoptersPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
@@ -39,7 +39,7 @@ public class QuadrokoptersPage {
 		log.info(String.format("[Step] set parameter: %s", parameterName));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		driver.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName)));
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		jse.executeScript("window.scrollBy(0," + driver
 				.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName))).getLocation().y
 				+ ")");
@@ -51,40 +51,43 @@ public class QuadrokoptersPage {
 	public QuadrokoptersPage specifyRangeOfAction(String range) throws InterruptedException {
 		log.info("[Step] specify range of action");
 		Thread.sleep(500);
-		//wait.until(ExpectedConditions.elementToBeClickable(ui.rangeOfAction)).sendKeys(range);
-		ui.rangeOfAction.waitToBeClickableAndSetValue(range);
+		ui.rangeOfAction.waitToBeClickable().setValue(range);
 		return this;
 	}
 
 	public QuadrokoptersPage clickAdditionalParameters() {
 		log.info("[Step] click additional parameters");
-		wait.until(ExpectedConditions.elementToBeClickable(ui.additionalParametersLink)).click();
+		ui.additionalParametersLink.waitToBeClickable().click();;
+		//wait.until(ExpectedConditions.elementToBeClickable(ui.additionalParametersLink)).click();
 		return this;
 	}
 
 	public QuadrokoptersPage verifyNumberOfFoundItemsIsCorrect(String numberOfTheFoundItems) {
 		log.info("[Step] verify number of found items is correct");
-		wait.until(ExpectedConditions.presenceOfElementLocated(ui.numberOfItemsFound));
-		String actualNumberOfFoundItems = driver.findElement(ui.numberOfItemsFound).getText();
+		ui.numberOfItemsFound.waitPresenсeOfElement();
+		String actualNumberOfFoundItems = ui.numberOfItemsFound.getText();
 		Assert.assertEquals(actualNumberOfFoundItems, numberOfTheFoundItems);
 		return this;
 	}
 
 	public QuadrokoptersPage changeSortOrderCheapGoFirst() {
 		log.info("[Step] change sort order - cheap should go first");
-		wait.until(ExpectedConditions.presenceOfElementLocated(ui.sortOrderIcon)).click();
-		wait.until(ExpectedConditions.elementToBeClickable(ui.sortOrderDropDowOptionCheap)).click();
+		ui.sortOrderIcon.waitPresenсeOfElement().click();
+		ui.sortOrderDropDowOptionCheap.waitToBeClickable().click();
+		//wait.until(ExpectedConditions.presenceOfElementLocated(ui.sortOrderIcon)).click();
+		//wait.until(ExpectedConditions.elementToBeClickable(ui.sortOrderDropDowOptionCheap)).click();
 		return this;
 	}
 
 	public QuadrokoptersPage verifyIsPriceSortedDesc() {
 		log.info("[Step] verify the price is sorted from high to low");
-		wait.until(ExpectedConditions.elementToBeClickable(ui.firstPrice));
-
-		String arrayFirstProduct[] = driver.findElement(ui.firstPrice).getText().split(" ");
+		ui.firstPrice.waitToBeClickable();
+		//wait.until(ExpectedConditions.elementToBeClickable(ui.firstPrice));
+		String arrayFirstProduct[] = ui.firstPrice.getText().split(" ");
+		//String arrayFirstProduct[] = driver.findElement(ui.firstPrice).getText().split(" ");
 		double value_min = Double.parseDouble(arrayFirstProduct[0].replace(",", "."));
-
-		String arraySecondProduct[] = driver.findElement(ui.secondPrice).getText().split(" ");
+		String arraySecondProduct[] = ui.secondPrice.getText().split(" ");
+		//String arraySecondProduct[] = driver.findElement(ui.secondPrice).getText().split(" ");
 		double value_max = Double.parseDouble(arraySecondProduct[0].replace(",", "."));
 
 		Assert.assertTrue(value_min <= value_max);
