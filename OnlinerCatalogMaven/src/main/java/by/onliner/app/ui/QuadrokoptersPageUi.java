@@ -24,6 +24,9 @@ public class QuadrokoptersPageUi {
 	public final Element numberOfItemsToCompare2 = new Element("//div[@id='compare-button-container']//a[@class='compare-button__sub compare-button__sub_main']");
 	public final Element radiocontrolAirModelHeader = new Element("//h1[@class=\"schema-header__title\"]");
 	
+
+
+	
 	
 	//public final By radiocontrolAirModelHeader = By.className("schema-header__title");
 	//public final By rangeOfAction = By.xpath("//input[@placeholder='6']");
