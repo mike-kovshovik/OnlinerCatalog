@@ -14,8 +14,9 @@ public class Input extends Element
 		super(locator);
 	}
 	
-	public void setValue (String value)
+	public void setValue (String value) throws InterruptedException
 	{
+		Thread.sleep(2000);
 		driver.findElement(By.xpath(locator)).sendKeys(value);
 	}
 	

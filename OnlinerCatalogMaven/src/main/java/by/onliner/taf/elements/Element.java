@@ -30,7 +30,6 @@ public class Element extends BaseTest
 		this.locator = locator;
 	}
 	
-	
 	public String getText() 
 	{
 		return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(locator)))).getText();
@@ -59,6 +58,13 @@ public class Element extends BaseTest
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
 		return this;
 	}
+	
+	public String stringFormatElement (String xPathPrototype, String parameter)
+	{
+		String xpathFormatted;
+		return xpathFormatted = String.format(xPathPrototype, parameter);
+	}
+	
 
 
 	

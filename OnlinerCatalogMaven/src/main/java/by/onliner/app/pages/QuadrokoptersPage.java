@@ -19,7 +19,6 @@ public class QuadrokoptersPage {
 	private WebDriverWait wait;
 
 	QuadrokoptersPageUi ui = new QuadrokoptersPageUi();
-	//AdditionalConditions loadJs = new AdditionalConditions();
 
 	public QuadrokoptersPage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
@@ -45,12 +44,13 @@ public class QuadrokoptersPage {
 				+ ")");
 		wait.until(ExpectedConditions.elementToBeClickable(
 				driver.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName))))).click();
+		Thread.sleep(2000);
 		return this;
 	}
 
 	public QuadrokoptersPage specifyRangeOfAction(String range) throws InterruptedException {
 		log.info("[Step] specify range of action");
-		Thread.sleep(500);
+		Thread.sleep(2000);
 		ui.rangeOfAction.waitToBeClickable().setValue(range);
 		return this;
 	}
@@ -107,15 +107,17 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage checkNumberOfItemsToCompare(String expectedText) {
 		log.info("[Step] verify Number of Items to Compare text");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ui.numberOfItemsToCompare));
-		Assert.assertEquals(expectedText, driver.findElement(ui.numberOfItemsToCompare).getText());
+		ui.numberOfItemsToCompare.waitToBeClickable();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(ui.numberOfItemsToCompare));
+		//Assert.assertEquals(expectedText, driver.findElement(ui.numberOfItemsToCompare).getText());
+		Assert.assertEquals(expectedText, ui.numberOfItemsToCompare.getText());
 		return this;
 	}
 
 	public CompareItemsPage clickOnNumberOfItemsToCompare() {
 		log.info("[Step] click on number of items to compare link");
-		// ui.numberOfItemsToCompare2.waitAndClick();
-		wait.until(ExpectedConditions.elementToBeClickable(ui.numberOfItemsToCompare)).click();
+		ui.numberOfItemsToCompare.waitToBeClickable().click();
+		//wait.until(ExpectedConditions.elementToBeClickable(ui.numberOfItemsToCompare)).click();
 		return new CompareItemsPage(driver, wait);
 	}
 

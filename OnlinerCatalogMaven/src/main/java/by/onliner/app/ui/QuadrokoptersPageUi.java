@@ -17,10 +17,10 @@ public class QuadrokoptersPageUi {
 	public final Element sortOrderDropDowOptionCheap = new Element("//div[@id='schema-order']//span[text()='Дешевые']");
 	public final Element firstPrice = new Element("//div[@id='schema-products']/div[1]//div[@class='schema-product__price']/a/span");
 	public final Element secondPrice = new Element("//div[@id='schema-products']/div[2]//div[@class='schema-product__line']//a/span");
+	public final Element numberOfItemsToCompare = new Element("//div[@id='compare-button-container']//a[@class='compare-button__sub compare-button__sub_main']");
 	
-	
-	public final By numberOfItemsToCompare = By
-			.xpath("//div[@id='compare-button-container']//a[@class='compare-button__sub compare-button__sub_main']");
+	//public final By numberOfItemsToCompare = By
+	//		.xpath("//div[@id='compare-button-container']//a[@class='compare-button__sub compare-button__sub_main']");
 	public final Element numberOfItemsToCompare2 = new Element("//div[@id='compare-button-container']//a[@class='compare-button__sub compare-button__sub_main']");
 	public final Element radiocontrolAirModelHeader = new Element("//h1[@class=\"schema-header__title\"]");
 	
