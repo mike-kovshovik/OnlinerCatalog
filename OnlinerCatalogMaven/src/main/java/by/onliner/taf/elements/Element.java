@@ -65,4 +65,6 @@ public class Element extends BaseTest
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
 		return this;
 	}
+	
+	
 }

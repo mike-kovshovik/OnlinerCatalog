@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import by.onliner.app.ui.QuadrokoptersPageUi;
+import by.onliner.taf.elements.CommonPageMethods;
 import by.onliner.taf.utils.AdditionalConditions;
 
 public class QuadrokoptersPage {
@@ -25,15 +26,23 @@ public class QuadrokoptersPage {
 		this.wait = wait;
 	}
 
-	public QuadrokoptersPage verifyIsPageHeaderEqualTo(String headerText) {
-		log.info("[Step] verify page header");
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(ui.radiocontrolAirModelHeader));
-		//String actualHeader = driver.findElement(ui.radiocontrolAirModelHeader).getText();
-		//Assert.assertEquals(actualHeader, headerText);
-		Assert.assertEquals(ui.radiocontrolAirModelHeader.getText(), headerText);
+	
+//	public QuadrokoptersPage verifyIsPageHeaderEqualTo(String headerText) {
+//		log.info("[Step] verify page header");
+//		Assert.assertEquals(ui.radiocontrolAirModelHeader.getText(), headerText);
+//		return this;
+//	}
+
+
+	public QuadrokoptersPage verifyPageTitleEqualsTo(String pageTitle) {
+		log.info("[Step] verify page title");
+		String sd = driver.getTitle();
+		Assert.assertEquals(CommonPageMethods.getPageTitle(), pageTitle);
 		return this;
 	}
 
+	
+	
 	public QuadrokoptersPage setParameter(String parameterName) throws InterruptedException {
 		log.info(String.format("[Step] set parameter: %s", parameterName));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -108,8 +117,6 @@ public class QuadrokoptersPage {
 	public QuadrokoptersPage checkNumberOfItemsToCompare(String expectedText) {
 		log.info("[Step] verify Number of Items to Compare text");
 		ui.numberOfItemsToCompare.waitToBeClickable();
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(ui.numberOfItemsToCompare));
-		//Assert.assertEquals(expectedText, driver.findElement(ui.numberOfItemsToCompare).getText());
 		Assert.assertEquals(expectedText, ui.numberOfItemsToCompare.getText());
 		return this;
 	}
@@ -120,6 +127,8 @@ public class QuadrokoptersPage {
 		//wait.until(ExpectedConditions.elementToBeClickable(ui.numberOfItemsToCompare)).click();
 		return new CompareItemsPage(driver, wait);
 	}
+
+
 
 
 }

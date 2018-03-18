@@ -8,6 +8,7 @@ public class TestData {
 	public static final String beautyAndSport = "Красота";
 	public static final String hobby = "Хобби";
 	public static final String radioModels = "Радиоуправляемые авиамодели";
+	public static final String pageTitle = "Квадрокоптер купить в Минске. Радиоуправляемые самолеты";
 	public static final String quadrocopter = "квадрокоптер";
 	public static final String plastic = "пластик";
 	public static final String metal = "металл";
@@ -15,16 +16,6 @@ public class TestData {
 	public static final String beskollectornyi = "бесколлекторный";
 	public static final String numberOfFoundItems = "Найдено %s товаров";
 	public static final String onlinerHomePage = "http://onliner.by";
-	
-		
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

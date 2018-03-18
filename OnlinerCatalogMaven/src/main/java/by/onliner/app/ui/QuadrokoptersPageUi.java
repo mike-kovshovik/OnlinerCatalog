@@ -1,7 +1,5 @@
 package by.onliner.app.ui;
 
-import org.openqa.selenium.By;
-
 import by.onliner.taf.elements.Checkbox;
 import by.onliner.taf.elements.Element;
 import by.onliner.taf.elements.Input;

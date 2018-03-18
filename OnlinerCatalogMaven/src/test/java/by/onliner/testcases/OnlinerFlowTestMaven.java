@@ -39,7 +39,7 @@ public class OnlinerFlowTestMaven {
 			.selectCatalogTopMenuItem(TestData.beautyAndSport)
 			.selectLeftMenuItem(TestData.hobby)
 			.selectCategoryFromGrid(TestData.radioModels)
-			.verifyIsPageHeaderEqualTo(TestData.radioModels) // to create a class for common page methods (e.g. verify page header)
+			.verifyPageTitleEqualsTo(TestData.pageTitle) // to created a class for common page methods (e.g. verify page title)
 			.setParameter(TestData.quadrocopter)
 			.setParameter(TestData.plastic)
 			.setParameter(TestData.metal)
