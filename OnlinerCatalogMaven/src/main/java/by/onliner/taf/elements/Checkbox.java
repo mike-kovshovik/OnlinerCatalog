@@ -1,6 +1,7 @@
 package by.onliner.taf.elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Checkbox extends Element
 {
@@ -9,9 +10,17 @@ public class Checkbox extends Element
 		super(locator);
 	}
 	
+	
 	public void tickCheckbox (String locator)
 	{
 		driver.findElement(By.xpath(locator)).click();
+	}
+	
+	
+	public Checkbox waitToBeClickable()
+	{
+		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(locator))));
+		return this;
 	}
 	
 	

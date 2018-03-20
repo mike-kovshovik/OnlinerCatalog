@@ -36,30 +36,21 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage verifyPageTitleEqualsTo(String pageTitle) {
 		log.info("[Step] verify page title");
-		String sd = driver.getTitle();
 		Assert.assertEquals(CommonPageMethods.getPageTitle(), pageTitle);
 		return this;
 	}
 
 	
-	
 	public QuadrokoptersPage setParameter(String parameterName) throws InterruptedException {
 		log.info(String.format("[Step] set parameter: %s", parameterName));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		driver.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName)));
-		Thread.sleep(3000);
-		jse.executeScript("window.scrollBy(0," + driver
-				.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName))).getLocation().y
-				+ ")");
-		wait.until(ExpectedConditions.elementToBeClickable(
-				driver.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName))))).click();
-		Thread.sleep(2000);
+		jse.executeScript("window.scrollBy(0," + driver.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName))).getLocation().y + ")");
+		ui.getQuadroParametersXpath(parameterName).waitToBeClickable().click();
 		return this;
 	}
 
 	public QuadrokoptersPage specifyRangeOfAction(String range) throws InterruptedException {
 		log.info("[Step] specify range of action");
-		Thread.sleep(2000);
 		ui.rangeOfAction.waitToBeClickable().setValue(range);
 		return this;
 	}
@@ -91,14 +82,13 @@ public class QuadrokoptersPage {
 	public QuadrokoptersPage verifyIsPriceSortedDesc() {
 		log.info("[Step] verify the price is sorted from high to low");
 		ui.firstPrice.waitToBeClickable();
-		//wait.until(ExpectedConditions.elementToBeClickable(ui.firstPrice));
+		
 		String arrayFirstProduct[] = ui.firstPrice.getText().split(" ");
-		//String arrayFirstProduct[] = driver.findElement(ui.firstPrice).getText().split(" ");
 		double value_min = Double.parseDouble(arrayFirstProduct[0].replace(",", "."));
+		
 		String arraySecondProduct[] = ui.secondPrice.getText().split(" ");
-		//String arraySecondProduct[] = driver.findElement(ui.secondPrice).getText().split(" ");
 		double value_max = Double.parseDouble(arraySecondProduct[0].replace(",", "."));
-
+		
 		Assert.assertTrue(value_min <= value_max);
 		return this;
 	}
@@ -107,9 +97,11 @@ public class QuadrokoptersPage {
 		Thread.sleep(2000);
 		for (int i = 0; i < itemIndexes.length; i++) {
 			log.info(String.format("[Step] select items to compare. Index number: %s", itemIndexes[i]));
-			wait.until(ExpectedConditions
-					.elementToBeClickable(By.xpath(String.format(ui.xpathListOfCheckboxesToCompare, itemIndexes[i]))))
-					.click();
+
+			
+//			wait.until(ExpectedConditions
+//					.elementToBeClickable(By.xpath(String.format(ui.xpathListOfCheckboxesToCompare, itemIndexes[i]))))
+//					.click();
 		}
 		return this;
 	}
@@ -124,7 +116,6 @@ public class QuadrokoptersPage {
 	public CompareItemsPage clickOnNumberOfItemsToCompare() {
 		log.info("[Step] click on number of items to compare link");
 		ui.numberOfItemsToCompare.waitToBeClickable().click();
-		//wait.until(ExpectedConditions.elementToBeClickable(ui.numberOfItemsToCompare)).click();
 		return new CompareItemsPage(driver, wait);
 	}
 

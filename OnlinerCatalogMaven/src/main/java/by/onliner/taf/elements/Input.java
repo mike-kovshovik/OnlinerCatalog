@@ -14,19 +14,13 @@ public class Input extends Element
 		super(locator);
 	}
 	
+
 	public void setValue (String value) throws InterruptedException
 	{
 		Thread.sleep(2000);
 		driver.findElement(By.xpath(locator)).sendKeys(value);
 	}
 	
-	
-	public void waitToBeClickableAndSetValue (String value)
-	{
-		WebElement textField = wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(locator))));
-		textField.clear();
-		textField.sendKeys(value);
-	}
 	
 	public Input waitToBeClickable ()
 	{

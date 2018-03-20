@@ -1,12 +1,10 @@
 package by.onliner.app.ui;
 
-import by.onliner.taf.elements.Checkbox;
 import by.onliner.taf.elements.Element;
 import by.onliner.taf.elements.Input;
 
 public class QuadrokoptersPageUi {
 	public final String xpathForQuadroParameters = "//div[@id='schema-filter']//span[text()='%s']";
-	public final Checkbox quadroParametersXpathPrototype = new Checkbox("//div[@id='schema-filter']//span[text()='%s']");
 	public final String xpathListOfCheckboxesToCompare = "//div[@id='schema-products']/div[%s]//span[@class='i-checkbox__faux']";
 	public final Input rangeOfAction = new Input("//input[@placeholder='6']");
 	public final Element additionalParametersLink = new Element("//div[@class='schema-filter-additional__trigger']/a[contains(text(), 'Дополнительные параметры')]");
@@ -16,15 +14,15 @@ public class QuadrokoptersPageUi {
 	public final Element firstPrice = new Element("//div[@id='schema-products']/div[1]//div[@class='schema-product__price']/a/span");
 	public final Element secondPrice = new Element("//div[@id='schema-products']/div[2]//div[@class='schema-product__line']//a/span");
 	public final Element numberOfItemsToCompare = new Element("//div[@id='compare-button-container']//a[@class='compare-button__sub compare-button__sub_main']");
-	
-	//public final By numberOfItemsToCompare = By
-	//		.xpath("//div[@id='compare-button-container']//a[@class='compare-button__sub compare-button__sub_main']");
-	public final Element numberOfItemsToCompare2 = new Element("//div[@id='compare-button-container']//a[@class='compare-button__sub compare-button__sub_main']");
 	public final Element radiocontrolAirModelHeader = new Element("//h1[@class=\"schema-header__title\"]");
 	
 
-
+	public final Element getQuadroParametersXpath(String parameter) 
+	{
+		return new Element(xpathForQuadroParameters, parameter);
+	}
 	
+
 	
 	//public final By radiocontrolAirModelHeader = By.className("schema-header__title");
 	//public final By rangeOfAction = By.xpath("//input[@placeholder='6']");
