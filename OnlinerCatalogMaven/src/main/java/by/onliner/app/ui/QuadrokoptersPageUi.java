@@ -1,5 +1,6 @@
 package by.onliner.app.ui;
 
+import by.onliner.taf.elements.Checkbox;
 import by.onliner.taf.elements.Element;
 import by.onliner.taf.elements.Input;
 
@@ -22,7 +23,10 @@ public class QuadrokoptersPageUi {
 		return new Element(xpathForQuadroParameters, parameter);
 	}
 	
-
+/*	public final Checkbox getCheckboxXpath (String parameter) 
+	{
+		return new Checkbox(xpathForQuadroParameters, parameter);
+	}*/
 	
 	//public final By radiocontrolAirModelHeader = By.className("schema-header__title");
 	//public final By rangeOfAction = By.xpath("//input[@placeholder='6']");

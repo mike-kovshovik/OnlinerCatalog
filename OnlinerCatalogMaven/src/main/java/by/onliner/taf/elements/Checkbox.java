@@ -10,6 +10,12 @@ public class Checkbox extends Element
 		super(locator);
 	}
 	
+	public Checkbox(String locatorXpath, String parameter) 
+	{
+		/*String locator = String.format(locatorXpath, parameter);*/
+		super(String.format(locatorXpath, parameter));
+	}
+	
 	
 	public void tickCheckbox (String locator)
 	{
