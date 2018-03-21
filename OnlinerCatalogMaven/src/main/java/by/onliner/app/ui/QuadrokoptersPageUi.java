@@ -18,15 +18,21 @@ public class QuadrokoptersPageUi {
 	public final Element radiocontrolAirModelHeader = new Element("//h1[@class=\"schema-header__title\"]");
 	
 
-	public final Element getQuadroParametersXpath(String parameter) 
+/*	public final Element getQuadroParametersXpath(String parameter) 
 	{
 		return new Element(xpathForQuadroParameters, parameter);
-	}
+	}*/
 	
-/*	public final Checkbox getCheckboxXpath (String parameter) 
+	
+	public final Checkbox getQuadroParametersXpath (String parameter) 
 	{
 		return new Checkbox(xpathForQuadroParameters, parameter);
-	}*/
+	}
+	
+	public final Checkbox getCheckboxCompareListXpath (Integer parameter) 
+	{
+		return new Checkbox(xpathListOfCheckboxesToCompare, parameter);
+	}
 	
 	//public final By radiocontrolAirModelHeader = By.className("schema-header__title");
 	//public final By rangeOfAction = By.xpath("//input[@placeholder='6']");

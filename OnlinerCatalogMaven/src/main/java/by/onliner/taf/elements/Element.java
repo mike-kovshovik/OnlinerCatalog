@@ -22,8 +22,8 @@ public class Element extends BaseTest
 	
 	public Element(String localorPrototype, String parameter)
 	{
-		String locator = String.format(localorPrototype, parameter);
-		this.setLocator(locator);
+//		String locator = String.format(localorPrototype, parameter);
+		this.setLocator(String.format(localorPrototype, parameter));
 	}
 	
 

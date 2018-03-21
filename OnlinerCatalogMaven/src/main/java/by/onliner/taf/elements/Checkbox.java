@@ -12,7 +12,11 @@ public class Checkbox extends Element
 	
 	public Checkbox(String locatorXpath, String parameter) 
 	{
-		/*String locator = String.format(locatorXpath, parameter);*/
+		super(String.format(locatorXpath, parameter));
+	}
+	
+	public Checkbox(String locatorXpath, Integer parameter) 
+	{
 		super(String.format(locatorXpath, parameter));
 	}
 	

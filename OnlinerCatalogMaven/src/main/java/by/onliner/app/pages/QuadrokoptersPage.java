@@ -97,7 +97,7 @@ public class QuadrokoptersPage {
 		Thread.sleep(2000);
 		for (int i = 0; i < itemIndexes.length; i++) {
 			log.info(String.format("[Step] select items to compare. Index number: %s", itemIndexes[i]));
-
+			ui.getCheckboxCompareListXpath(itemIndexes[i]).waitToBeClickable().click();
 			
 //			wait.until(ExpectedConditions
 //					.elementToBeClickable(By.xpath(String.format(ui.xpathListOfCheckboxesToCompare, itemIndexes[i]))))
