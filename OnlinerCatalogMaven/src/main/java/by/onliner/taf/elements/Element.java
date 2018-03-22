@@ -22,7 +22,6 @@ public class Element extends BaseTest
 	
 	public Element(String localorPrototype, String parameter)
 	{
-//		String locator = String.format(localorPrototype, parameter);
 		this.setLocator(String.format(localorPrototype, parameter));
 	}
 	
@@ -43,11 +42,6 @@ public class Element extends BaseTest
 		
 	}
 	
-	public Element clear () 
-	{
-		driver.findElement(By.xpath(locator)).clear();
-		return this;
-	}
 	
 	public Element waitToBeClickable ()
 	{
@@ -60,10 +54,17 @@ public class Element extends BaseTest
 		driver.findElement(By.xpath(locator)).click();
 	}
 	
-	public Element waitPresenсeOfElement()
+	public Element waitElementToBePresent()
 	{
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
 		return this;
+	}
+	
+	public WebElement getWebElement()
+	{
+//		WebElement webElement = driver.findElement(By.xpath(locator));
+//		return webElement;
+		return driver.findElement(By.xpath(locator));
 	}
 	
 	

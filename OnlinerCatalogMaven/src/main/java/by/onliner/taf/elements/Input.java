@@ -15,9 +15,8 @@ public class Input extends Element
 	}
 	
 
-	public void setValue (String value) throws InterruptedException
+	public void setValue (String value)
 	{
-		Thread.sleep(2000);
 		driver.findElement(By.xpath(locator)).sendKeys(value);
 	}
 	
@@ -25,6 +24,12 @@ public class Input extends Element
 	public Input waitToBeClickable ()
 	{
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(locator))));
+		return this;
+	}
+	
+	public Input clear () 
+	{
+		driver.findElement(By.xpath(locator)).clear();
 		return this;
 	}
 	

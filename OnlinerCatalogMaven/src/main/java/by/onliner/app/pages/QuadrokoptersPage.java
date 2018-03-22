@@ -64,7 +64,7 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage verifyNumberOfFoundItemsIsCorrect(String numberOfTheFoundItems) {
 		log.info("[Step] verify number of found items is correct");
-		ui.numberOfItemsFound.waitPresenсeOfElement();
+		ui.numberOfItemsFound.waitElementToBePresent();
 		String actualNumberOfFoundItems = ui.numberOfItemsFound.getText();
 		Assert.assertEquals(actualNumberOfFoundItems, numberOfTheFoundItems);
 		return this;
@@ -72,7 +72,7 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage changeSortOrderCheapGoFirst() {
 		log.info("[Step] change sort order - cheap should go first");
-		ui.sortOrderIcon.waitPresenсeOfElement().click();
+		ui.sortOrderIcon.waitElementToBePresent().click();
 		ui.sortOrderDropDowOptionCheap.waitToBeClickable().click();
 		//wait.until(ExpectedConditions.presenceOfElementLocated(ui.sortOrderIcon)).click();
 		//wait.until(ExpectedConditions.elementToBeClickable(ui.sortOrderDropDowOptionCheap)).click();
@@ -117,6 +117,7 @@ public class QuadrokoptersPage {
 		log.info("[Step] click on number of items to compare link");
 		ui.numberOfItemsToCompare.waitToBeClickable().click();
 		return new CompareItemsPage(driver, wait);
+
 	}
 
 

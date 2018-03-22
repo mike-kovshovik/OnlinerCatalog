@@ -8,8 +8,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.sun.istack.internal.logging.Logger;
+import org.apache.log4j.Logger;
 
 import by.onliner.app.ui.ProductDetailsPageUi;
 
@@ -28,12 +27,14 @@ public class ProductDetailsPage
 
 	public ProductDetailsPage verifyInitiallySelectedParametersAreCorrect(String[] listOfExpectedValues) {
 		log.info("[Step] verify initially selected parameters are correct");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ui.quadroTypeValue));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(ui.quadroTypeValue));
+		ui.quadroTypeValue.waitElementToBePresent();
 		Set<String> setOfExpectedValues = new HashSet<String>(Arrays.asList(listOfExpectedValues));
 
-		Assert.assertTrue(setOfExpectedValues.contains(driver.findElement(ui.quadroTypeValue).getText()));
-		Assert.assertTrue(setOfExpectedValues.contains(driver.findElement(ui.materialTypeValue).getText()));
-		Assert.assertTrue(setOfExpectedValues.contains(driver.findElement(ui.engineTypeValue).getText()));
+//		Assert.assertTrue(setOfExpectedValues.contains(driver.findElement(ui.quadroTypeValue).getText()));
+		Assert.assertTrue(setOfExpectedValues.contains(ui.quadroTypeValue.getText()));
+		Assert.assertTrue(setOfExpectedValues.contains(ui.materialTypeValue.getText()));
+		Assert.assertTrue(setOfExpectedValues.contains(ui.engineTypeValue.getText()));
 		return this;
 	}
 
