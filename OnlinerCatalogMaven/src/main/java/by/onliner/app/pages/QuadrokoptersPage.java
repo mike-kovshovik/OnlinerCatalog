@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import by.onliner.app.ui.QuadrokoptersPageUi;
-import by.onliner.taf.elements.CommonPageMethods;
+import by.onliner.taf.elements.Page;
 import by.onliner.taf.utils.AdditionalConditions;
 
 public class QuadrokoptersPage {
@@ -36,16 +36,18 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage verifyPageTitleEqualsTo(String pageTitle) {
 		log.info("[Step] verify page title");
-		Assert.assertEquals(CommonPageMethods.getPageTitle(), pageTitle);
+		Assert.assertEquals(Page.getPageTitle(), pageTitle);
 		return this;
 	}
 
 	
-	public QuadrokoptersPage setParameter(String parameterName) throws InterruptedException {
+	public QuadrokoptersPage selectFilterParameter(String parameterName) throws InterruptedException {
 		log.info(String.format("[Step] set parameter: %s", parameterName));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0," + driver.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName))).getLocation().y + ")");
 		ui.getQuadroParametersXpath(parameterName).waitToBeClickable().click();
+		
+	// TODO scrollToElement - create a method
 		return this;
 	}
 
@@ -55,22 +57,23 @@ public class QuadrokoptersPage {
 		return this;
 	}
 
-	public QuadrokoptersPage clickAdditionalParameters() {
+	public QuadrokoptersPage openAdditionalParameters()
+	{
 		log.info("[Step] click additional parameters");
 		ui.additionalParametersLink.waitToBeClickable().click();;
 		//wait.until(ExpectedConditions.elementToBeClickable(ui.additionalParametersLink)).click();
+		// TODO to create a separate class to work with LINKS
 		return this;
 	}
 
-	public QuadrokoptersPage verifyNumberOfFoundItemsIsCorrect(String numberOfTheFoundItems) {
+	public QuadrokoptersPage verifyNumberOfFoundItemsIsCorrect(int numberOfTheFoundItems) {
 		log.info("[Step] verify number of found items is correct");
-		ui.numberOfItemsFound.waitToBePresent();
-		String actualNumberOfFoundItems = ui.numberOfItemsFound.getText();
+		String actualNumberOfFoundItems = ui.foundItemsCountRecordPrototype.setLocatorVariable(numberOfTheFoundItems).waitToBePresent().getText();
 		Assert.assertEquals(actualNumberOfFoundItems, numberOfTheFoundItems);
 		return this;
 	}
 
-	public QuadrokoptersPage changeSortOrderCheapGoFirst() {
+	public QuadrokoptersPage changeSortOrder() {
 		log.info("[Step] change sort order - cheap should go first");
 		ui.sortOrderIcon.waitToBePresent().click();
 		ui.sortOrderDropDowOptionCheap.waitToBeClickable().click();
@@ -81,7 +84,7 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage verifyIsPriceSortedDesc() {
 		log.info("[Step] verify the price is sorted from high to low");
-		ui.firstPrice.waitToBeClickable();
+		ui.firstPrice.waitToBeVisible();
 		
 		String arrayFirstProduct[] = ui.firstPrice.getText().split(" ");
 		double value_min = Double.parseDouble(arrayFirstProduct[0].replace(",", "."));
@@ -93,8 +96,9 @@ public class QuadrokoptersPage {
 		return this;
 	}
 
-	public QuadrokoptersPage selectItemsToCompare(int[] itemIndexes) throws InterruptedException {
-		Thread.sleep(2000);
+	public QuadrokoptersPage selectItemsToCompare(int[] itemIndexes)
+	{
+		//Thread.sleep(2000);
 		for (int i = 0; i < itemIndexes.length; i++) {
 			log.info(String.format("[Step] select items to compare. Index number: %s", itemIndexes[i]));
 			ui.getCheckboxCompareListXpath(itemIndexes[i]).waitToBeClickable().click();
@@ -106,11 +110,13 @@ public class QuadrokoptersPage {
 		return this;
 	}
 
-	public QuadrokoptersPage checkNumberOfItemsToCompare(String expectedText) {
+	public QuadrokoptersPage checkNumberOfItemsToCompare(String expectedText)
+	{
 		log.info("[Step] verify Number of Items to Compare text");
 		ui.numberOfItemsToCompare.waitToBeClickable();
 		Assert.assertEquals(expectedText, ui.numberOfItemsToCompare.getText());
 		return this;
+		// TODO to move the number to parameter
 	}
 
 	public CompareItemsPage clickOnNumberOfItemsToCompare() {

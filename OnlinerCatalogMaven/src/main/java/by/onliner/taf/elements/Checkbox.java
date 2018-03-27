@@ -10,10 +10,12 @@ public class Checkbox extends Element
 		super(locator);
 	}
 	
+	
 	public Checkbox(String locatorXpath, String parameter) 
 	{
 		super(String.format(locatorXpath, parameter));
 	}
+	
 	
 	public Checkbox(String locatorXpath, Integer parameter) 
 	{
@@ -32,6 +34,8 @@ public class Checkbox extends Element
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(locator))));
 		return this;
 	}
+	
+	// 
 	
 	
 }

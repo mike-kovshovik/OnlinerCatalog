@@ -13,21 +13,15 @@ import by.onliner.test.data.TestData;
 
 public class OnlinerFlowTestMaven {
 	
-	Browser browser = new Browser();
-	//public static WebDriver driver;
-	//public static WebDriverWait wait;
-
+	private Browser browser;
+	
 	@BeforeTest
-	public void beforeTest() {
+	public void beforeTest()
+	{
 		BaseTest.driver = new ChromeDriver();
 		BaseTest.wait = new WebDriverWait(BaseTest.driver, 15);
-		//driver = new ChromeDriver();
-		//wait = new WebDriverWait(driver, 15);
-		//Element.driver = driver;
-		//Element.wait = wait;
+		Browser browser = new Browser();
 		browser.goToUrl(TestData.onlinerHomePage).maximizeWindow();
-		//BaseTest.driver.manage().window().fullscreen();
-		//BaseTest.driver.navigate().to("http://onliner.by");
 	}
 
 	@Test
@@ -40,19 +34,19 @@ public class OnlinerFlowTestMaven {
 			.selectLeftMenuItem(TestData.hobby)
 			.selectCategoryFromGrid(TestData.radioModels)
 			.verifyPageTitleEqualsTo(TestData.pageTitle) // created a class for common page methods (e.g. verify page title)
-			.setParameter(TestData.quadrocopter)
-			.setParameter(TestData.plastic)
-			.setParameter(TestData.metal)
+			.selectFilterParameter(TestData.quadrocopter)
+			.selectFilterParameter(TestData.plastic)
+			.selectFilterParameter(TestData.metal)
 			.specifyRangeOfAction(TestData.rangeOfAction100)
-			.clickAdditionalParameters()
-			.setParameter(TestData.beskollectornyi)
-			.verifyNumberOfFoundItemsIsCorrect(String.format(TestData.numberOfFoundItems, 28))
-			.changeSortOrderCheapGoFirst()
+			.openAdditionalParameters()
+			.selectFilterParameter(TestData.beskollectornyi)
+			.verifyNumberOfFoundItemsIsCorrect(TestData.numberOfFoundItems)
+			.changeSortOrder()
 			.verifyIsPriceSortedDesc()
 			.selectItemsToCompare(TestData.indexesOfCheckboxes)
-			.checkNumberOfItemsToCompare("4 товара в сравнении")
+			.checkNumberOfItemsToCompare("4 товара в сравнении") //TODO move to TestData (4 is int)
 			.clickOnNumberOfItemsToCompare()
-			.clickSelectedItemInComparisonTable("3")
+			.openProductDetails(3) //TODO move to TestData
 			.verifyInitiallySelectedParametersAreCorrect(TestData.initiallySelectedParameters)
 			.addToCart()
 			.verifyNumerOfItemsInTheCartIsCorrect()
@@ -60,13 +54,12 @@ public class OnlinerFlowTestMaven {
 			.addPlusOneItem()
 			.verifyTotalNumberOfItemsAndPrice()
 			.placeOrder()
-			.assertLoginToSitePopupAppeared();
+			.verifyLoginPopupDisplayed();
 	}
 
 	@AfterTest
 	public void afterTest() {
 		browser.quit();
-		//BaseTest.driver.quit();
 	}
 
 }

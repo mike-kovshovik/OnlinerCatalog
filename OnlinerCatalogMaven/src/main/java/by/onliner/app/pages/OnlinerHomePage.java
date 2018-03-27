@@ -23,7 +23,7 @@ public class OnlinerHomePage
 	public OnlinerCatalogPage selectMainMenuItem(String menuItem)
 	{
 		log.info("[Step] select Main Menu Item");
-		ui.getMainMenuItemXpath(menuItem).waitToBeClickable().click();
+		ui.mainMenuNavigationPrototype.setLocatorVariable(menuItem).waitToBeClickable().click();
     //	WebElement mainMenuElement = wait
 	//			.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(String.format(ui.mainMenuNavigationXpathPrototype, menuItem)))));
 	//	mainMenuElement.click();

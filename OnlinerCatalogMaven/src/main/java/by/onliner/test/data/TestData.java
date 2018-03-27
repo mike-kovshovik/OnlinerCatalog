@@ -14,8 +14,9 @@ public class TestData {
 	public static final String metal = "металл";
 	public static final String rangeOfAction100 = "100";
 	public static final String beskollectornyi = "бесколлекторный";
-	public static final String numberOfFoundItems = "Найдено %s товаров";
+	//public static final String numberOfFoundItems = "Найдено %s товаров";  // TODO to define locator
 	public static final String onlinerHomePage = "http://onliner.by";
+	public static final int numberOfFoundItems = 28;
 	
 	
 	

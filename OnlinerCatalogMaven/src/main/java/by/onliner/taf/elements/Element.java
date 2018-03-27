@@ -20,10 +20,10 @@ public class Element extends BaseTest
 		this.setLocator(locator);
 	}
 	
-	public Element(String localorPrototype, String parameter)
+/*	public Element(String localorPrototype, String parameter)
 	{
 		this.setLocator(String.format(localorPrototype, parameter));
-	}
+	}*/
 	
 
 	public String getLocator()
@@ -46,7 +46,7 @@ public class Element extends BaseTest
 	
 	public Element waitToBeVisible() 
 	{
-		driver.findElement(By.xpath(locator));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
 		return this;
 	}
 	
@@ -76,6 +76,12 @@ public class Element extends BaseTest
 		return driver.findElement(By.xpath(locator));
 	}
 	
-
+	public Element setLocatorVariable (Object variable) 
+	{
+		return new Element(String.format(locator, variable));
+	}
+	
+	// create method scrollTo
+	
 	
 }

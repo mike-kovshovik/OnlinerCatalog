@@ -9,7 +9,7 @@ public class QuadrokoptersPageUi {
 	public final String xpathListOfCheckboxesToCompare = "//div[@id='schema-products']/div[%s]//span[@class='i-checkbox__faux']";
 	public final Input rangeOfAction = new Input("//input[@placeholder='6']");
 	public final Element additionalParametersLink = new Element("//div[@class='schema-filter-additional__trigger']/a[contains(text(), 'Дополнительные параметры')]");
-	public final Element numberOfItemsFound = new Element("//div[@id='schema-filter-button']//span[starts-with(text(), 'Найдено')]");
+	public final Element foundItemsCountRecordPrototype = new Element("//div[@id='schema-filter-button']//span[contains(text(), 'Найдено %s товаров')]");
 	public final Element sortOrderIcon = new Element("//span[@class='schema-order__text']");
 	public final Element sortOrderDropDowOptionCheap = new Element("//div[@id='schema-order']//span[text()='Дешевые']");
 	public final Element firstPrice = new Element("//div[@id='schema-products']/div[1]//div[@class='schema-product__price']/a/span");
