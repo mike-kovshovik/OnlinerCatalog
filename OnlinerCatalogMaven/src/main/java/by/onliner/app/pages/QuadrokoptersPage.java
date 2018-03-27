@@ -64,7 +64,7 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage verifyNumberOfFoundItemsIsCorrect(String numberOfTheFoundItems) {
 		log.info("[Step] verify number of found items is correct");
-		ui.numberOfItemsFound.waitElementToBePresent();
+		ui.numberOfItemsFound.waitToBePresent();
 		String actualNumberOfFoundItems = ui.numberOfItemsFound.getText();
 		Assert.assertEquals(actualNumberOfFoundItems, numberOfTheFoundItems);
 		return this;
@@ -72,7 +72,7 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage changeSortOrderCheapGoFirst() {
 		log.info("[Step] change sort order - cheap should go first");
-		ui.sortOrderIcon.waitElementToBePresent().click();
+		ui.sortOrderIcon.waitToBePresent().click();
 		ui.sortOrderDropDowOptionCheap.waitToBeClickable().click();
 		//wait.until(ExpectedConditions.presenceOfElementLocated(ui.sortOrderIcon)).click();
 		//wait.until(ExpectedConditions.elementToBeClickable(ui.sortOrderDropDowOptionCheap)).click();

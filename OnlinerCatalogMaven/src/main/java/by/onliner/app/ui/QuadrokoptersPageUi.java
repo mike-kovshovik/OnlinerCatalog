@@ -18,12 +18,6 @@ public class QuadrokoptersPageUi {
 	public final Element radiocontrolAirModelHeader = new Element("//h1[@class=\"schema-header__title\"]");
 	
 
-/*	public final Element getQuadroParametersXpath(String parameter) 
-	{
-		return new Element(xpathForQuadroParameters, parameter);
-	}*/
-	
-	
 	public final Checkbox getQuadroParametersXpath (String parameter) 
 	{
 		return new Checkbox(xpathForQuadroParameters, parameter);

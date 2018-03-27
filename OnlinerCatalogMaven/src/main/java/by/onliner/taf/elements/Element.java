@@ -36,12 +36,6 @@ public class Element extends BaseTest
 		this.locator = locator;
 	}
 	
-	public String getText() 
-	{
-		return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(locator)))).getText();
-		
-	}
-	
 	
 	public Element waitToBeClickable ()
 	{
@@ -49,23 +43,39 @@ public class Element extends BaseTest
 		return this;
 	}
 	
-	public void click ()
+	
+	public Element waitToBeVisible() 
 	{
-		driver.findElement(By.xpath(locator)).click();
+		driver.findElement(By.xpath(locator));
+		return this;
 	}
 	
-	public Element waitElementToBePresent()
+	
+	public Element waitToBePresent()
 	{
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
 		return this;
 	}
 	
+	
+	public void click ()
+	{
+		driver.findElement(By.xpath(locator)).click();
+	}
+	
+	
+	public String getText() 
+	{
+		return driver.findElement(By.xpath(locator)).getText();
+		//return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(locator)))).getText();
+	}
+	
+	
 	public WebElement getWebElement()
 	{
-//		WebElement webElement = driver.findElement(By.xpath(locator));
-//		return webElement;
 		return driver.findElement(By.xpath(locator));
 	}
 	
+
 	
 }

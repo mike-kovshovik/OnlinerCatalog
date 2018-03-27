@@ -28,7 +28,7 @@ public class ProductDetailsPage
 	public ProductDetailsPage verifyInitiallySelectedParametersAreCorrect(String[] listOfExpectedValues) {
 		log.info("[Step] verify initially selected parameters are correct");
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(ui.quadroTypeValue));
-		ui.quadroTypeValue.waitElementToBePresent();
+		ui.quadroTypeValue.waitToBePresent();
 		Set<String> setOfExpectedValues = new HashSet<String>(Arrays.asList(listOfExpectedValues));
 
 //		Assert.assertTrue(setOfExpectedValues.contains(driver.findElement(ui.quadroTypeValue).getText()));

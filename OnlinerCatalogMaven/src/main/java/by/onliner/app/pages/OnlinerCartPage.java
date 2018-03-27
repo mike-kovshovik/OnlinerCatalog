@@ -46,11 +46,13 @@ public class OnlinerCartPage {
 		String itemPrice[] = driver.findElement(ui.priceForOneItem).getText().split(" ");
 		double itemPriceFormatted = Double.parseDouble(itemPrice[0].replace(",", "."));
 		
-		String totalPriceOfTwoItems[] = driver.findElement(ui.totalPrice).getText().split(" ");
+		//String totalPriceOfTwoItems[] = driver.findElement(ui.totalPrice).getText().split(" ");
+		String totalPriceOfTwoItems[] = ui.totalPrice.getText().split(" ");
 		double totalPriceFormatted = Double.parseDouble(totalPriceOfTwoItems[0].replace(",", "."));
 		
-		double numberOfItems = Double.parseDouble(driver.findElement(ui.totalNumberOfItemsLabel).getText());
-
+		//double numberOfItems = Double.parseDouble(driver.findElement(ui.totalNumberOfItemsLabel).getText());
+		double numberOfItems = Double.parseDouble(ui.totalNumberOfItemsLabel.getText());
+		
 		Assert.assertTrue(totalPriceFormatted == itemPriceFormatted * numberOfItems);
 		return this;
 	}
@@ -58,16 +60,20 @@ public class OnlinerCartPage {
 
 	public OnlinerCartPage placeOrder() {
 		log.info("[Step] press Place order");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ui.placeOrderLink));
-		driver.findElement(ui.placeOrderLink).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(ui.placeOrderLink));
+		ui.placeOrderLink.waitToBeClickable().click();
+		//driver.findElement(ui.placeOrderLink).click();
 		return this;
 	}
 	
 
 	public void assertLoginToSitePopupAppeared() {
 		log.info("[Step] verify whether the log in pop up shows up");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(ui.enterSitePopup));
-		Assert.assertTrue(driver.findElement(ui.enterSitePopup).getText().length() > 0);
+		ui.enterSitePopup.waitToBeVisible();
+		Assert.assertTrue(ui.enterSitePopup.getText().length() > 0);
+		
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(ui.enterSitePopup));
+		//Assert.assertTrue(driver.findElement(ui.enterSitePopup).getText().length() > 0);
 	}
 
 }
