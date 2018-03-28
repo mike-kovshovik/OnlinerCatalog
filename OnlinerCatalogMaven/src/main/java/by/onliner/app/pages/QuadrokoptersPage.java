@@ -5,12 +5,11 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import by.onliner.app.ui.QuadrokoptersPageUi;
 import by.onliner.taf.elements.Page;
-import by.onliner.taf.utils.AdditionalConditions;
+import by.onliner.test.data.TestData;
 
 public class QuadrokoptersPage {
 
@@ -98,31 +97,27 @@ public class QuadrokoptersPage {
 
 	public QuadrokoptersPage selectItemsToCompare(int[] itemIndexes)
 	{
-		//Thread.sleep(2000);
+
 		for (int i = 0; i < itemIndexes.length; i++) {
 			log.info(String.format("[Step] select items to compare. Index number: %s", itemIndexes[i]));
 			ui.getCheckboxCompareListXpath(itemIndexes[i]).waitToBeClickable().click();
-			
-//			wait.until(ExpectedConditions
-//					.elementToBeClickable(By.xpath(String.format(ui.xpathListOfCheckboxesToCompare, itemIndexes[i]))))
-//					.click();
 		}
 		return this;
 	}
 
-	public QuadrokoptersPage checkNumberOfItemsToCompare(String expectedText)
+	public QuadrokoptersPage checkNumberOfItemsToCompare(int expectedNumberOfItems)
 	{
 		log.info("[Step] verify Number of Items to Compare text");
 		ui.numberOfItemsToCompare.waitToBeClickable();
-		Assert.assertEquals(expectedText, ui.numberOfItemsToCompare.getText());
+		Assert.assertEquals(String.format(TestData.goodsToCompareText, expectedNumberOfItems), ui.numberOfItemsToCompare.getText());
 		return this;
-		// TODO to move the number to parameter
+		// TODO to move the number to parameter - (DONE)
 	}
 
 	public CompareItemsPage clickOnNumberOfItemsToCompare() {
 		log.info("[Step] click on number of items to compare link");
 		ui.numberOfItemsToCompare.waitToBeClickable().click();
-		return new CompareItemsPage(driver, wait);
+		return new CompareItemsPage();
 
 	}
 

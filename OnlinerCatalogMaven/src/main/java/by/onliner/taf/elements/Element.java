@@ -67,7 +67,6 @@ public class Element extends BaseTest
 	public String getText() 
 	{
 		return driver.findElement(By.xpath(locator)).getText();
-		//return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(locator)))).getText();
 	}
 	
 	

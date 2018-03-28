@@ -22,7 +22,7 @@ public class CompareItemsPage extends BaseTest
 		Actions clicker = new Actions(driver);
 //		WebElement gridItem = wait.until(ExpectedConditions.elementToBeClickable(
 //				driver.findElement(By.xpath(String.format(ui.comparisonTableItemPrototype, elementPosition)))));
-		WebElement gridItem = ui.getComparisonTableItemXpath(productIndex).waitToBeClickable().getWebElement(); //TODO to create method MoveToElement
+		WebElement gridItem = ui.comparisonTableItemPrototype.setLocatorVariable(productIndex).waitToBeClickable().getWebElement(); //TODO to create method MoveToElement
 		clicker.moveToElement(gridItem, 30, 30).click().perform();
 		return new ProductDetailsPage(driver, wait);
 	}
