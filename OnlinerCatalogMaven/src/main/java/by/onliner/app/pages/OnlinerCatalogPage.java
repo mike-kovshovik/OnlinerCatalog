@@ -26,7 +26,6 @@ public class OnlinerCatalogPage
 	{
 		log.info("[Step] select top menu item from Onliner Catalog");
 		ui.topMenuItemPrototype.setLocatorVariable(topMenuItem).waitToBeClickable().click();
-		//ui.getTopMenuXpath(topMenuItem).waitToBeClickable().click();
 		return this;
 	}
 	
@@ -35,7 +34,6 @@ public class OnlinerCatalogPage
 	{
 		log.info("[Step] select left side menu item from Onliner Catalog");
 		ui.subMenuItemPrototype.setLocatorVariable(leftMenuItem).waitToBeClickable().click();
-		//ui.getSubMenuXpath(leftMenuItem).waitToBeClickable().click();
 		return this;
 	}
 	
@@ -44,31 +42,9 @@ public class OnlinerCatalogPage
 	{
 		log.info("[Step] select category from Onliner Catalog grid");
 		ui.gridItemPrototype.setLocatorVariable(itemFromTheGrid).waitToBeClickable().click();
-		//ui.getGridItemXpath(itemFromTheGrid).waitToBeClickable().click();
 		return new QuadrokoptersPage(driver, wait);
 	}
 
-	
-//	public OnlinerCatalogPage selectCatalogTopMenuItem(String topMenuItem)
-//	{
-//		log.info("[Step] select top menu item from Onliner Catalog");
-//		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(String.format(ui.topMenuItemPrototype, topMenuItem))))).click();
-//		return this;
-//	}
-//	
-//	public OnlinerCatalogPage selectLeftMenuItem(String leftMenuItem)
-//	{
-//		log.info("[Step] select left side menu item from Onliner Catalog");
-//		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(String.format(ui.subMenuItemPrototype, leftMenuItem))))).click();
-//		return this;
-//	}
-//	
-//	
-//	public QuadrokoptersPage selectCategoryFromGrid(String itemFromTheGrid)
-//	{
-//		log.info("[Step] select category from Onliner Catalog grid");
-//		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(String.format(ui.gridItemPrototype, itemFromTheGrid))))).click();
-//		return new QuadrokoptersPage(driver, wait);
-//	}
+
 	
 }

@@ -24,9 +24,6 @@ public class OnlinerHomePage
 	{
 		log.info("[Step] select Main Menu Item");
 		ui.mainMenuNavigationPrototype.setLocatorVariable(menuItem).waitToBeClickable().click();
-    //	WebElement mainMenuElement = wait
-	//			.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(String.format(ui.mainMenuNavigationXpathPrototype, menuItem)))));
-	//	mainMenuElement.click();
 		return new OnlinerCatalogPage(driver, wait);
 	}
 

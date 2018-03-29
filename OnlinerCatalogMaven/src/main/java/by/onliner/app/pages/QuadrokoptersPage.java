@@ -11,7 +11,8 @@ import by.onliner.app.ui.QuadrokoptersPageUi;
 import by.onliner.taf.elements.Page;
 import by.onliner.test.data.TestData;
 
-public class QuadrokoptersPage {
+public class QuadrokoptersPage
+{
 
 	private static final Logger log = Logger.getLogger(QuadrokoptersPage.class);
 
@@ -40,12 +41,13 @@ public class QuadrokoptersPage {
 	}
 
 	
-	public QuadrokoptersPage selectFilterParameter(String parameterName) throws InterruptedException {
+	public QuadrokoptersPage selectFilterParameter(String parameterName)
+	{
 		log.info(String.format("[Step] set parameter: %s", parameterName));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0," + driver.findElement(By.xpath(String.format(ui.xpathForQuadroParameters, parameterName))).getLocation().y + ")");
-		ui.getQuadroParametersXpath(parameterName).waitToBeClickable().click();
-		
+		jse.executeScript("window.scrollBy(0," + ui.xpathForQuadroParameters.setLocatorVariable(parameterName).getWebElement().getLocation().y + ")");
+		ui.xpathForQuadroParameters.setLocatorVariable(parameterName).waitToBeClickable().click();
+
 	// TODO scrollToElement - create a method
 		return this;
 	}
@@ -68,7 +70,8 @@ public class QuadrokoptersPage {
 	public QuadrokoptersPage verifyNumberOfFoundItemsIsCorrect(int numberOfTheFoundItems) {
 		log.info("[Step] verify number of found items is correct");
 		String actualNumberOfFoundItems = ui.foundItemsCountRecordPrototype.setLocatorVariable(numberOfTheFoundItems).waitToBePresent().getText();
-		Assert.assertEquals(actualNumberOfFoundItems, numberOfTheFoundItems);
+		String expectedNumberOfItems = String.format(TestData.numberOfFoundItemsText, numberOfTheFoundItems);
+		Assert.assertEquals(actualNumberOfFoundItems, String.format(TestData.numberOfFoundItemsText, numberOfTheFoundItems));
 		return this;
 	}
 
@@ -76,8 +79,6 @@ public class QuadrokoptersPage {
 		log.info("[Step] change sort order - cheap should go first");
 		ui.sortOrderIcon.waitToBePresent().click();
 		ui.sortOrderDropDowOptionCheap.waitToBeClickable().click();
-		//wait.until(ExpectedConditions.presenceOfElementLocated(ui.sortOrderIcon)).click();
-		//wait.until(ExpectedConditions.elementToBeClickable(ui.sortOrderDropDowOptionCheap)).click();
 		return this;
 	}
 
@@ -100,7 +101,8 @@ public class QuadrokoptersPage {
 
 		for (int i = 0; i < itemIndexes.length; i++) {
 			log.info(String.format("[Step] select items to compare. Index number: %s", itemIndexes[i]));
-			ui.getCheckboxCompareListXpath(itemIndexes[i]).waitToBeClickable().click();
+			ui.xpathListOfCheckboxesToCompare.setLocatorVariable(itemIndexes[i]).waitToBeClickable().click();
+			//ui.getCheckboxCompareListXpath(itemIndexes[i]).waitToBeClickable().click();
 		}
 		return this;
 	}
@@ -110,8 +112,7 @@ public class QuadrokoptersPage {
 		log.info("[Step] verify Number of Items to Compare text");
 		ui.numberOfItemsToCompare.waitToBeClickable();
 		Assert.assertEquals(String.format(TestData.goodsToCompareText, expectedNumberOfItems), ui.numberOfItemsToCompare.getText());
-		return this;
-		// TODO to move the number to parameter - (DONE)
+		return this;  // TODO to move the number to parameter - (DONE)
 	}
 
 	public CompareItemsPage clickOnNumberOfItemsToCompare() {
