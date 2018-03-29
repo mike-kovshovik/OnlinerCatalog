@@ -25,7 +25,8 @@ public class OnlinerCatalogPage
 	public OnlinerCatalogPage selectCatalogTopMenuItem(String topMenuItem)
 	{
 		log.info("[Step] select top menu item from Onliner Catalog");
-		ui.getTopMenuXpath(topMenuItem).waitToBeClickable().click();
+		ui.topMenuItemPrototype.setLocatorVariable(topMenuItem).waitToBeClickable().click();
+		//ui.getTopMenuXpath(topMenuItem).waitToBeClickable().click();
 		return this;
 	}
 	
@@ -33,7 +34,8 @@ public class OnlinerCatalogPage
 	public OnlinerCatalogPage selectLeftMenuItem(String leftMenuItem)
 	{
 		log.info("[Step] select left side menu item from Onliner Catalog");
-		ui.getSubMenuXpath(leftMenuItem).waitToBeClickable().click();
+		ui.subMenuItemPrototype.setLocatorVariable(leftMenuItem).waitToBeClickable().click();
+		//ui.getSubMenuXpath(leftMenuItem).waitToBeClickable().click();
 		return this;
 	}
 	
@@ -41,7 +43,8 @@ public class OnlinerCatalogPage
 	public QuadrokoptersPage selectCategoryFromGrid(String itemFromTheGrid)
 	{
 		log.info("[Step] select category from Onliner Catalog grid");
-		ui.getGridItemXpath(itemFromTheGrid).waitToBeClickable().click();
+		ui.gridItemPrototype.setLocatorVariable(itemFromTheGrid).waitToBeClickable().click();
+		//ui.getGridItemXpath(itemFromTheGrid).waitToBeClickable().click();
 		return new QuadrokoptersPage(driver, wait);
 	}
 
