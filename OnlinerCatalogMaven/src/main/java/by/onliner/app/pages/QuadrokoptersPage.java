@@ -61,16 +61,14 @@ public class QuadrokoptersPage
 	public QuadrokoptersPage openAdditionalParameters()
 	{
 		log.info("[Step] click additional parameters");
-		ui.additionalParametersLink.waitToBeClickable().click();;
-		//wait.until(ExpectedConditions.elementToBeClickable(ui.additionalParametersLink)).click();
-		// TODO to create a separate class to work with LINKS
+		ui.additionalParametersLink.waitToBeClickable().click();
+		// TODO to create a separate class to work with LINKS - DONE
 		return this;
 	}
 
 	public QuadrokoptersPage verifyNumberOfFoundItemsIsCorrect(int numberOfTheFoundItems) {
 		log.info("[Step] verify number of found items is correct");
 		String actualNumberOfFoundItems = ui.foundItemsCountRecordPrototype.setLocatorVariable(numberOfTheFoundItems).waitToBePresent().getText();
-		String expectedNumberOfItems = String.format(TestData.numberOfFoundItemsText, numberOfTheFoundItems);
 		Assert.assertEquals(actualNumberOfFoundItems, String.format(TestData.numberOfFoundItemsText, numberOfTheFoundItems));
 		return this;
 	}
