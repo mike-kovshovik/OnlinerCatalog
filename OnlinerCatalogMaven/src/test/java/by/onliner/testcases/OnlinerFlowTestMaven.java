@@ -13,20 +13,19 @@ import by.onliner.test.data.TestData;
 
 public class OnlinerFlowTestMaven {
 	
-	private Browser browser;
+	//private Browser browser;
+	Browser browser = new Browser();
 	
 	@BeforeTest
 	public void beforeTest()
 	{
 		BaseTest.driver = new ChromeDriver();
 		BaseTest.wait = new WebDriverWait(BaseTest.driver, 15);
-		Browser browser = new Browser();
 		browser.goToUrl(TestData.onlinerHomePage).maximizeWindow();
 	}
 
 	@Test
 	public void e2eOnlinerCatalogTest() throws InterruptedException {
-		// 2. Navigate to catalog
 		OnlinerHomePage onlinerHomePage = new OnlinerHomePage(BaseTest.driver, BaseTest.wait);
 		onlinerHomePage
 			.selectMainMenuItem(TestData.catalog)
@@ -58,7 +57,8 @@ public class OnlinerFlowTestMaven {
 	}
 
 	@AfterTest
-	public void afterTest() {
+	public void afterTest()
+	{
 		browser.quit();
 	}
 

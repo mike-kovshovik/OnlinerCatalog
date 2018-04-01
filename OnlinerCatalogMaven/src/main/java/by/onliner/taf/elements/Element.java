@@ -1,8 +1,10 @@
 package by.onliner.taf.elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -80,7 +82,17 @@ public class Element extends BaseTest
 		return new Element(String.format(locator, variable));
 	}
 	
-	// create method scrollTo
+	public static void scrollToElement(Element element)
+	{
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(0," + element.getWebElement().getLocation().y + ")");
+	}
+	
+	public static void moveToElement(WebElement element, int xOffSet, int yOffSet) 
+	{
+		Actions clicker = new Actions(driver);
+		clicker.moveToElement(element, xOffSet, yOffSet).click().perform();
+	}
 	
 	
 }

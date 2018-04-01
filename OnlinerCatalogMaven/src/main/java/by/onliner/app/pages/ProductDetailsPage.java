@@ -27,34 +27,32 @@ public class ProductDetailsPage
 
 	public ProductDetailsPage verifyInitiallySelectedParametersAreCorrect(String[] listOfExpectedValues) {
 		log.info("[Step] verify initially selected parameters are correct");
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(ui.quadroTypeValue));
 		ui.quadroTypeValue.waitToBePresent();
 		Set<String> setOfExpectedValues = new HashSet<String>(Arrays.asList(listOfExpectedValues));
 
-//		Assert.assertTrue(setOfExpectedValues.contains(driver.findElement(ui.quadroTypeValue).getText()));
 		Assert.assertTrue(setOfExpectedValues.contains(ui.quadroTypeValue.getText()));
 		Assert.assertTrue(setOfExpectedValues.contains(ui.materialTypeValue.getText()));
 		Assert.assertTrue(setOfExpectedValues.contains(ui.engineTypeValue.getText()));
 		return this;
 	}
 
-	public ProductDetailsPage addToCart() {
-		// Actions act = new Actions(driver);
-		// WebElement cartDiv = driver.findElement(cartLinkPrototype);
-		// act.moveToElement(cartDiv).perform();
+	public ProductDetailsPage addToCart() 
+	{
 		log.info("[Step] add the item into the cart");
 		wait.until(ExpectedConditions.elementToBeClickable(ui.cartLink)).click();
 		return this;
 	}
 
-	public ProductDetailsPage verifyNumerOfItemsInTheCartIsCorrect() {
+	public ProductDetailsPage verifyNumerOfItemsInTheCartIsCorrect() 
+	{
 		log.info("[Step] verify number items in the cart is correct");
 		wait.until(ExpectedConditions.textToBePresentInElementLocated(ui.itemInCartLink, "1 товар"));
 		Assert.assertEquals("1 товар", driver.findElement(ui.itemInCartLink).getText());
 		return this;
 	}
 
-	public OnlinerCartPage clickNumberOfItemsInCartLink() {
+	public OnlinerCartPage clickNumberOfItemsInCartLink()
+	{
 		log.info("[Step] click number of items in the cart link");
 		wait.until(ExpectedConditions.textToBePresentInElementLocated(ui.itemInCartLink, "1 товар"));
 		driver.findElement(ui.itemInCartLink).click();

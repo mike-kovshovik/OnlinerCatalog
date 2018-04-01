@@ -8,25 +8,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import by.onliner.app.ui.CompareItemsPageUi;
 import by.onliner.taf.BaseTest;
+import by.onliner.taf.elements.Element;
 
 public class CompareItemsPage extends BaseTest
 {
-
 	private static final Logger log = Logger.getLogger(CompareItemsPage.class);
-
 	private final CompareItemsPageUi ui = new CompareItemsPageUi();
-
 
 	public ProductDetailsPage openProductDetails(int productIndex) {
 		log.info("[Step] Select an item in the comparison table");
-		Actions clicker = new Actions(driver);
-//		WebElement gridItem = wait.until(ExpectedConditions.elementToBeClickable(
-//				driver.findElement(By.xpath(String.format(ui.comparisonTableItemPrototype, elementPosition)))));
-		WebElement gridItem = ui.comparisonTableItemPrototype.setLocatorVariable(productIndex).waitToBeClickable().getWebElement(); //TODO to create method MoveToElement
-		clicker.moveToElement(gridItem, 30, 30).click().perform();
+		WebElement gridItem = ui.comparisonTableItemPrototype.setLocatorVariable(productIndex).waitToBeClickable().getWebElement(); //TODO to create method MoveToElement - DONE
+		Element.moveToElement(gridItem, 30, 30);
 		return new ProductDetailsPage(driver, wait);
 	}
 
 
-
+	
+	
+	
 }

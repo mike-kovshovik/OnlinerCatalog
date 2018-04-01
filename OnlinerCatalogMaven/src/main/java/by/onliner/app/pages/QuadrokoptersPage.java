@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import by.onliner.app.ui.QuadrokoptersPageUi;
+import by.onliner.taf.elements.Element;
 import by.onliner.taf.elements.Page;
 import by.onliner.test.data.TestData;
 
@@ -26,13 +27,6 @@ public class QuadrokoptersPage
 		this.wait = wait;
 	}
 
-	
-//	public QuadrokoptersPage verifyIsPageHeaderEqualTo(String headerText) {
-//		log.info("[Step] verify page header");
-//		Assert.assertEquals(ui.radiocontrolAirModelHeader.getText(), headerText);
-//		return this;
-//	}
-
 
 	public QuadrokoptersPage verifyPageTitleEqualsTo(String pageTitle) {
 		log.info("[Step] verify page title");
@@ -41,14 +35,12 @@ public class QuadrokoptersPage
 	}
 
 	
-	public QuadrokoptersPage selectFilterParameter(String parameterName)
+	public QuadrokoptersPage selectFilterParameter(String parameterName) throws InterruptedException
 	{
 		log.info(String.format("[Step] set parameter: %s", parameterName));
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0," + ui.xpathForQuadroParameters.setLocatorVariable(parameterName).getWebElement().getLocation().y + ")");
+		Element.scrollToElement(ui.xpathForQuadroParameters.setLocatorVariable(parameterName));
+		Thread.sleep(2000);
 		ui.xpathForQuadroParameters.setLocatorVariable(parameterName).waitToBeClickable().click();
-
-	// TODO scrollToElement - create a method
 		return this;
 	}
 
@@ -62,7 +54,6 @@ public class QuadrokoptersPage
 	{
 		log.info("[Step] click additional parameters");
 		ui.additionalParametersLink.waitToBeClickable().click();
-		// TODO to create a separate class to work with LINKS - DONE
 		return this;
 	}
 
@@ -100,7 +91,6 @@ public class QuadrokoptersPage
 		for (int i = 0; i < itemIndexes.length; i++) {
 			log.info(String.format("[Step] select items to compare. Index number: %s", itemIndexes[i]));
 			ui.xpathListOfCheckboxesToCompare.setLocatorVariable(itemIndexes[i]).waitToBeClickable().click();
-			//ui.getCheckboxCompareListXpath(itemIndexes[i]).waitToBeClickable().click();
 		}
 		return this;
 	}
@@ -110,7 +100,7 @@ public class QuadrokoptersPage
 		log.info("[Step] verify Number of Items to Compare text");
 		ui.numberOfItemsToCompare.waitToBeClickable();
 		Assert.assertEquals(String.format(TestData.goodsToCompareText, expectedNumberOfItems), ui.numberOfItemsToCompare.getText());
-		return this;  // TODO to move the number to parameter - (DONE)
+		return this;
 	}
 
 	public CompareItemsPage clickOnNumberOfItemsToCompare() {
