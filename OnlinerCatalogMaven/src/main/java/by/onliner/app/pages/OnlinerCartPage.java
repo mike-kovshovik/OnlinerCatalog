@@ -50,20 +50,21 @@ public class OnlinerCartPage {
 		double totalPriceFormatted = Double.parseDouble(totalPriceOfTwoItems[0].replace(",", "."));
 		
 		double numberOfItems = Double.parseDouble(ui.totalNumberOfItemsLabel.getText());
-		
 		Assert.assertTrue(totalPriceFormatted == itemPriceFormatted * numberOfItems);
 		return this;
 	}
 	
 
-	public OnlinerCartPage placeOrder() {
+	public OnlinerCartPage placeOrder()
+	{
 		log.info("[Step] press Place order");
 		ui.placeOrderLink.waitToBeClickable().click();
 		return this;
 	}
 	
 
-	public void verifyLoginPopupDisplayed() {
+	public void verifyLoginPopupDisplayed()
+	{
 		log.info("[Step] verify whether the log in pop up shows up");
 		ui.enterSitePopup.waitToBeVisible();
 		Assert.assertTrue(ui.enterSitePopup.getText().length() > 0);

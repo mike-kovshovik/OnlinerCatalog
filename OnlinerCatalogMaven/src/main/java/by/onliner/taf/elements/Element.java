@@ -82,16 +82,27 @@ public class Element extends BaseTest
 		return new Element(String.format(locator, variable));
 	}
 	
-	public static void scrollToElement(Element element)
+	public Element scrollToElement()
 	{
+		WebElement element = driver.findElement(By.xpath(locator));
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0," + element.getWebElement().getLocation().y + ")");
+		jse.executeScript("window.scrollBy(0," + element.getLocation().y + ")");
+		return this;
 	}
 	
-	public static void moveToElement(WebElement element, int xOffSet, int yOffSet) 
+
+	public Element moveToElement()
 	{
+		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator))); 
 		Actions clicker = new Actions(driver);
-		clicker.moveToElement(element, xOffSet, yOffSet).click().perform();
+		clicker.moveToElement(element, 30, 30).build().perform();
+		return this;
+	}
+	
+	public Element waitTextToBePresentInElement(String text)
+	{
+		wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(locator), text));
+		return this;
 	}
 	
 	

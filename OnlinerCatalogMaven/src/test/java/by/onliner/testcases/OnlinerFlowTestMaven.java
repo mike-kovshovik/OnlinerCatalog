@@ -26,7 +26,7 @@ public class OnlinerFlowTestMaven {
 
 	@Test
 	public void e2eOnlinerCatalogTest() throws InterruptedException {
-		OnlinerHomePage onlinerHomePage = new OnlinerHomePage(BaseTest.driver, BaseTest.wait);
+		OnlinerHomePage onlinerHomePage = new OnlinerHomePage();
 		onlinerHomePage
 			.selectMainMenuItem(TestData.catalog)
 			.selectCatalogTopMenuItem(TestData.beautyAndSport)

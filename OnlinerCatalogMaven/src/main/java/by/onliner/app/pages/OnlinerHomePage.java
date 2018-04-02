@@ -11,20 +11,12 @@ public class OnlinerHomePage
 	private static final Logger log = Logger.getLogger(OnlinerHomePage.class);
 	private final OnlinerHomePageUi ui = new OnlinerHomePageUi();
 		
-	private WebDriver driver;
-	private WebDriverWait wait;
-
-	public OnlinerHomePage(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
-	}
-	
 
 	public OnlinerCatalogPage selectMainMenuItem(String menuItem)
 	{
 		log.info("[Step] select Main Menu Item");
 		ui.mainMenuNavigationPrototype.setLocatorVariable(menuItem).waitToBeClickable().click();
-		return new OnlinerCatalogPage(driver, wait);
+		return new OnlinerCatalogPage();
 	}
 
 }

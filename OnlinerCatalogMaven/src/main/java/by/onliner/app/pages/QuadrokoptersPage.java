@@ -2,49 +2,35 @@ package by.onliner.app.pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import by.onliner.app.ui.QuadrokoptersPageUi;
-import by.onliner.taf.elements.Element;
 import by.onliner.taf.elements.Page;
 import by.onliner.test.data.TestData;
 
 public class QuadrokoptersPage
 {
-
 	private static final Logger log = Logger.getLogger(QuadrokoptersPage.class);
-
-	private WebDriver driver;
-	private WebDriverWait wait;
-
 	QuadrokoptersPageUi ui = new QuadrokoptersPageUi();
 
-	public QuadrokoptersPage(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
-	}
-
-
-	public QuadrokoptersPage verifyPageTitleEqualsTo(String pageTitle) {
+	public QuadrokoptersPage verifyPageTitleEqualsTo(String pageTitle)
+	{
 		log.info("[Step] verify page title");
 		Assert.assertEquals(Page.getPageTitle(), pageTitle);
 		return this;
 	}
 
 	
-	public QuadrokoptersPage selectFilterParameter(String parameterName) throws InterruptedException
+	public QuadrokoptersPage selectFilterParameter(String parameterName)
 	{
 		log.info(String.format("[Step] set parameter: %s", parameterName));
-		Element.scrollToElement(ui.xpathForQuadroParameters.setLocatorVariable(parameterName));
-		Thread.sleep(2000);
-		ui.xpathForQuadroParameters.setLocatorVariable(parameterName).waitToBeClickable().click();
+		ui.xpathForQuadroParameters.setLocatorVariable(parameterName).scrollToElement().waitToBeClickable().click();
 		return this;
 	}
 
-	public QuadrokoptersPage specifyRangeOfAction(String range) throws InterruptedException {
+	public QuadrokoptersPage specifyRangeOfAction(String range)
+	{
 		log.info("[Step] specify range of action");
 		ui.rangeOfAction.waitToBeClickable().setValue(range);
 		return this;
@@ -85,11 +71,12 @@ public class QuadrokoptersPage
 		return this;
 	}
 
-	public QuadrokoptersPage selectItemsToCompare(int[] itemIndexes)
+	public QuadrokoptersPage selectItemsToCompare(int[] itemIndexes) throws InterruptedException
 	{
 
 		for (int i = 0; i < itemIndexes.length; i++) {
 			log.info(String.format("[Step] select items to compare. Index number: %s", itemIndexes[i]));
+			Thread.sleep(2000);
 			ui.xpathListOfCheckboxesToCompare.setLocatorVariable(itemIndexes[i]).waitToBeClickable().click();
 		}
 		return this;
@@ -107,7 +94,6 @@ public class QuadrokoptersPage
 		log.info("[Step] click on number of items to compare link");
 		ui.numberOfItemsToCompare.waitToBeClickable().click();
 		return new CompareItemsPage();
-
 	}
 
 

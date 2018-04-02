@@ -10,16 +10,7 @@ import by.onliner.app.ui.OnlinerCatalogPageUi;
 public class OnlinerCatalogPage
 {
 	private static final Logger log = Logger.getLogger(OnlinerCatalogPage.class);
-	private WebDriver driver;
-	private WebDriverWait wait;
-	
 	private final OnlinerCatalogPageUi ui = new OnlinerCatalogPageUi();
-	
-	public OnlinerCatalogPage(WebDriver driver, WebDriverWait wait)
-	{
-		this.driver=driver;
-		this.wait=wait;
-	}
 	
 	
 	public OnlinerCatalogPage selectCatalogTopMenuItem(String topMenuItem)
@@ -42,7 +33,7 @@ public class OnlinerCatalogPage
 	{
 		log.info("[Step] select category from Onliner Catalog grid");
 		ui.gridItemPrototype.setLocatorVariable(itemFromTheGrid).waitToBeClickable().click();
-		return new QuadrokoptersPage(driver, wait);
+		return new QuadrokoptersPage();
 	}
 
 

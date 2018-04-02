@@ -39,23 +39,27 @@ public class ProductDetailsPage
 	public ProductDetailsPage addToCart() 
 	{
 		log.info("[Step] add the item into the cart");
-		wait.until(ExpectedConditions.elementToBeClickable(ui.cartLink)).click();
+		ui.cartLink.waitToBeClickable().click();
+		//wait.until(ExpectedConditions.elementToBeClickable(ui.cartLink)).click();
 		return this;
 	}
 
 	public ProductDetailsPage verifyNumerOfItemsInTheCartIsCorrect() 
 	{
 		log.info("[Step] verify number items in the cart is correct");
-		wait.until(ExpectedConditions.textToBePresentInElementLocated(ui.itemInCartLink, "1 товар"));
-		Assert.assertEquals("1 товар", driver.findElement(ui.itemInCartLink).getText());
+		ui.itemInCartLink.waitTextToBePresentInElement("1 товар");
+		Assert.assertEquals("1 товар", ui.itemInCartLink.getText());
+		//wait.until(ExpectedConditions.textToBePresentInElementLocated(ui.itemInCartLink, "1 товар"));
+		//Assert.assertEquals("1 товар", driver.findElement(ui.itemInCartLink).getText());
 		return this;
 	}
 
 	public OnlinerCartPage clickNumberOfItemsInCartLink()
 	{
 		log.info("[Step] click number of items in the cart link");
-		wait.until(ExpectedConditions.textToBePresentInElementLocated(ui.itemInCartLink, "1 товар"));
-		driver.findElement(ui.itemInCartLink).click();
+		ui.itemInCartLink.waitToBeClickable().click();
+		//wait.until(ExpectedConditions.textToBePresentInElementLocated(ui.itemInCartLink, "1 товар"));
+		//driver.findElement(ui.itemInCartLink).click();
 		return new OnlinerCartPage(driver, wait);
 	}
 }
