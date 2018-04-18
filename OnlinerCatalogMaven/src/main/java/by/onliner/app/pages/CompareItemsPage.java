@@ -18,6 +18,7 @@ public class CompareItemsPage extends BaseTest
 	public ProductDetailsPage openProductDetails(int productIndex) {
 		log.info("[Step] Select an item in the comparison table");
 		ui.comparisonTableItemPrototype.setLocatorVariable(productIndex).moveToElement().click();
+		//ui.comparisonTableItemPrototype.setLocatorVariable(productIndex).click();
 		return new ProductDetailsPage(driver, wait);
 	}
 

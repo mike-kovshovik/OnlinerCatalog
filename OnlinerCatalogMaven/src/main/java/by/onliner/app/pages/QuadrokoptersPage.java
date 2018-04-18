@@ -57,10 +57,10 @@ public class QuadrokoptersPage
 		return this;
 	}
 
-	public QuadrokoptersPage verifyIsPriceSortedDesc() {
+	public QuadrokoptersPage verifyIsPriceSortedDesc() throws InterruptedException {
 		log.info("[Step] verify the price is sorted from high to low");
 		ui.firstPrice.waitToBeVisible();
-		
+		Thread.sleep(2000);
 		String arrayFirstProduct[] = ui.firstPrice.getText().split(" ");
 		double value_min = Double.parseDouble(arrayFirstProduct[0].replace(",", "."));
 		
